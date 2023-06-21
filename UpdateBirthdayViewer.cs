@@ -39,9 +39,11 @@ namespace birthday_update
             });
             var requestData = new StringContent(body, Encoding.UTF8, "application/json");
 
+            log.LogInformation($"About to update birthday name to {birthdayName} at index {CurrentIndex}. Raw JSON request body:");
+            log.LogInformation(body);
 
             var response = await httpClient.PostAsync(ViewerApiPath, requestData);
-            
+
             log.LogInformation($"Viewer response was: {response.ToString()}");
             IncrementIndex();
         }
