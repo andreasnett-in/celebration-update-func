@@ -27,11 +27,7 @@ namespace birthday_update
         private readonly HttpClient httpClient = new();
 
         [FunctionName("UpdateBirthdayViewer")]
-        public async Task Run([TimerTrigger("0 */5 * * * *"
-        #if DEBUG
-        ,RunOnStartup = true
-        #endif
-        )]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"Birthday update trigger function executed at: {DateTime.Now}");
 
@@ -44,8 +40,9 @@ namespace birthday_update
             var requestData = new StringContent(body, Encoding.UTF8, "application/json");
 
 
-            await httpClient.PostAsync(ViewerApiPath, requestData);
-
+            var response = await httpClient.PostAsync(ViewerApiPath, requestData);
+            
+            log.LogInformation($"Viewer response was: {response.ToString()}");
             IncrementIndex();
         }
 
