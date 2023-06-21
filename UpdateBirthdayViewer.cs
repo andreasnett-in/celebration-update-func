@@ -22,7 +22,7 @@ namespace birthday_update
             "Sofie"
         };
 
-        private int CurrentIndex = 0;
+        private static int CurrentIndex = 0;
         private const string ViewerApiPath = "https://celebration-poets-web.azurewebsites.net/v1/birthday";
         private readonly HttpClient httpClient = new();
 
