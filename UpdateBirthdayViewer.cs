@@ -46,9 +46,9 @@ namespace birthday_update
 
             string body = JsonConvert.SerializeObject(new Dictionary<string, string>() {
                 {"name", birthdayName},
-                {"greeting", "Gratulerer med dagen!"},
-                {"quote", quote.Key},
-                {"quoteBy", quote.Value}
+                {"ornQuote", "Ganga varlega inn um gleðinna dyr"},
+                {"greeting", quote.Key},
+                {"greetBy", quote.Value}
             });
             var requestData = new StringContent(body, Encoding.UTF8, "application/json");
 
