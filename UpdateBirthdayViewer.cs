@@ -37,7 +37,7 @@ namespace birthday_update
         private readonly HttpClient httpClient = new();
 
         [FunctionName("UpdateBirthdayViewer")]
-        public async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"Birthday update trigger function executed at: {DateTime.Now}");
 
