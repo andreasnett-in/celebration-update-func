@@ -14,10 +14,10 @@ namespace birthday_update
     {
         private readonly List<string> BirthdayNames = new()
         {
-            "Sebastian",
-            "Herman",
-            "Solveig",
-            "Sara"
+            "Sebastian Brage Hansen",
+            "Herman Johan Drageland",
+            "Solveig Masvie",
+            "Sara Linnea Hansson Lier"
         };
         private readonly Dictionary<string, string> Quotes = new()
         {
