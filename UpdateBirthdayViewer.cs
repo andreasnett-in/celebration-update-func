@@ -14,19 +14,20 @@ namespace birthday_update
     {
         private readonly List<string> BirthdayNames = new()
         {
-            "Reidar",
-            "Andreas",
-            "Sofie"
+            "Sebastian",
+            "Herman",
+            "Solveig",
+            "Sara"
         };
         private readonly Dictionary<string, string> Quotes = new()
         {
+            { "Sebastian er ikke bare en talentfull designer, men også en utrolig rå stisyklist! Han kombinerer sin kreative visjon med sin lidenskap for eventyr og natur, og skaper virkelig unike opplevelser både på og utenfor sykkelstien.", "Sofie" },
             { @"Herman er ikke bare en dyktig programvareutvikler, men også en mesterkokk i sitt eget kjøkken! 
             Han viser den samme presisjonen og kreativiteten i matlagingen som han gjør i kodingen. 
             Med sin evne til å blande smaker og skape kulinariske mesterverk, serverer Herman ikke bare deilige retter, men også enestående opplevelser for smaksløkene.", "Reidar" },
             { @"Solveig er ikke bare en dyktig ingeniør, men også en imponerende klatrer! 
             Hun bruker sin analytiske tilnærming og utholdenhet fra jobben til å takle komplekse problemer og finne innovative løsninger under fjellklatringen. 
             Med hennes vennlige og positivt ladde natur, inspirerer Solveig ikke bare sine kolleger, men også fjellklatringsfellesskapet med styrke og mot.", "Andreas" },
-            { "Sebastian er ikke bare en talentfull designer, men også en utrolig rå stisyklist! Han kombinerer sin kreative visjon med sin lidenskap for eventyr og natur, og skaper virkelig unike opplevelser både på og utenfor sykkelstien.", "Sofie" },
             { @"Sara er ikke bare en talentfull forretningsutvikler, men også en utrolig imponerende håndballspiller! Hun bruker den samme utholdenheten, taktiske strategiene og lederegenskapene fra håndballbanen til å forme og vokse virksomheter. 
             Med hennes evne til å lede laget mot seier på banen og i forretningsverdenen, viser Sara en imponerende kombinasjon av styrke, intelligens og dedikasjon som gjør henne til en eksepsjonell kraft å regne med.", "Overhørt på Camp Poeticum" }
         };
@@ -34,7 +35,6 @@ namespace birthday_update
         private static int CurrentIndex = 0;
         private const string ViewerApiPath = "https://celebration-poets-web.azurewebsites.net/v1/birthday";
         private readonly HttpClient httpClient = new();
-        private readonly Random rand = new();
 
         [FunctionName("UpdateBirthdayViewer")]
         public async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
@@ -42,7 +42,7 @@ namespace birthday_update
             log.LogInformation($"Birthday update trigger function executed at: {DateTime.Now}");
 
             var birthdayName = BirthdayNames[CurrentIndex];
-            var quote = Quotes.ElementAt(rand.Next(0, Quotes.Count));
+            var quote = Quotes.ElementAt(CurrentIndex);
 
             string body = JsonConvert.SerializeObject(new Dictionary<string, string>() {
                 {"name", birthdayName},
